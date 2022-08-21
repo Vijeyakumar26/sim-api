@@ -1,13 +1,39 @@
 package com.sim.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "simtable")
 public class Sim {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long simCardNo;
+	
+	@Column(name = "mobileno", nullable = false)
 	private long mobileNo;
+	
+	@Column(name = "status", nullable = false)
 	private String status ;
+	
+	@Column(name = "date", nullable = false)
 	private String date;
+	
+	@Column(name = "state", nullable = false)
 	private String state;
+	
+	@Column(name = "kyc", nullable = false)
 	private boolean kyc;
+	
+	@Column(name = "provider", nullable = false)
 	private String telecomProvider;
+	
+	@Column(name = "fullname", nullable = false)
 	private String fullName;
 	
 	public long getSimCardNo() {
