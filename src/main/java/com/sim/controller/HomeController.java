@@ -32,7 +32,7 @@ public class HomeController {
 	}
 	
 	@PostMapping(path = "/addsim")
-	@ResponseStatus(code = HttpStatus.OK)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public String addSim() {
 		return "From Simple API";
 	}
