@@ -31,7 +31,7 @@ public class HomeController {
 		return simRepository.findAll();
 	}
 	
-	@PostMapping(path = "/add")
+	@PostMapping(path = "/addsim")
 	@ResponseStatus(code = HttpStatus.OK)
 	public String addSim() {
 		return "From Simple API";

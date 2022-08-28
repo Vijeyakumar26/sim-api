@@ -24,12 +24,12 @@
 			<version>6.0.0.Final</version>
 			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>11.2.0.jre8</version>
-		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.4.2</version>
+		</dependency>
 
 
 		<dependency>
