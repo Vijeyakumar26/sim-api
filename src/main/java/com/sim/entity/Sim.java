@@ -11,6 +11,20 @@ import javax.persistence.Table;
 @Table(name = "simtable")
 public class Sim {
 	
+	public Sim(long simCardNo, long mobileNo, String status, String date, String state, boolean kyc,
+			String telecomProvider, String fullName) {
+		super();
+		this.simCardNo = simCardNo;
+		this.mobileNo = mobileNo;
+		this.status = status;
+		this.date = date;
+		this.state = state;
+		this.kyc = kyc;
+		this.telecomProvider = telecomProvider;
+		this.fullName = fullName;
+	}
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long simCardNo;
