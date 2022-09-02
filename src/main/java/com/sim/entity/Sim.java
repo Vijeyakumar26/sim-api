@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "simtable")
 public class Sim {
 	
-	public Sim(long simCardNo, long mobileNo, String status, String date, String state, boolean kyc,
+	public Sim(Long simCardNo, Long mobileNo, String status, String date, String state, boolean kyc,
 			String telecomProvider, String fullName) {
 		super();
 		this.simCardNo = simCardNo;
@@ -24,13 +24,12 @@ public class Sim {
 		this.fullName = fullName;
 	}
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long simCardNo;
+	private Long simCardNo;
 	
 	@Column(name = "mobileno", nullable = false)
-	private long mobileNo;
+	private Long mobileNo;
 	
 	@Column(name = "status", nullable = false)
 	private String status ;
@@ -50,16 +49,16 @@ public class Sim {
 	@Column(name = "fullname", nullable = false)
 	private String fullName;
 	
-	public long getSimCardNo() {
+	public Long getSimCardNo() {
 		return simCardNo;
 	}
-	public void setSimCardNo(long simCardNo) {
+	public void setSimCardNo(Long simCardNo) {
 		this.simCardNo = simCardNo;
 	}
-	public long getMobileNo() {
+	public Long getMobileNo() {
 		return mobileNo;
 	}
-	public void setMobileNo(long mobileNo) {
+	public void setMobileNo(Long mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 	public String getStatus() {
