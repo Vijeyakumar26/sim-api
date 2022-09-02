@@ -5,16 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "simtable")
 public class Sim {
 	
-	public Sim(Long simCardNo, Long mobileNo, String status, String date, String state, boolean kyc,
+	public Sim(Long mobileNo, String status, String date, String state, boolean kyc,
 			String telecomProvider, String fullName) {
 		super();
-		this.simCardNo = simCardNo;
 		this.mobileNo = mobileNo;
 		this.status = status;
 		this.date = date;
@@ -25,22 +26,23 @@ public class Sim {
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "sim_sequence", sequenceName = "sim_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long simCardNo;
 	
 	@Column(name = "mobileno", nullable = false)
 	private Long mobileNo;
 	
-	@Column(name = "status", nullable = false)
+	@Column(name = "status")
 	private String status ;
 	
-	@Column(name = "date", nullable = false)
+	@Column(name = "date")
 	private String date;
 	
 	@Column(name = "state", nullable = false)
 	private String state;
 	
-	@Column(name = "kyc", nullable = false)
+	@Column(name = "kyc")
 	private boolean kyc;
 	
 	@Column(name = "provider", nullable = false)
