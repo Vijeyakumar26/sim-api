@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sim.entity.Sim;
 import com.sim.repository.SimRepository;
+import com.sim.service.SimService;
 
 @RequestMapping("/api/v1")
 @RestController
 public class HomeController {
 	
-	 @Autowired
-	 private SimRepository simRepository;
+	@Autowired
+	 private SimService simService;
 
 	@GetMapping(path = "/")
 	@ResponseStatus(code = HttpStatus.OK)
@@ -29,14 +30,13 @@ public class HomeController {
 	
 	@GetMapping(path = "/listall")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Sim> listAll() {	
-		return simRepository.findAll();
+	public void listAll() {	
+		 simService.getAllSim();
 	}
 	
 	@PostMapping(path = "/addsim")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void addSim(@RequestBody Map<String, Object> jsonData) {
-		long simCardNo = Long.valueOf((String) jsonData.get("simCardNo"));
 		long mobileNo = (long) jsonData.get("mobileNo");
 		String status = (String) jsonData.get("status");
 		String date = (String) jsonData.get("date");
@@ -44,7 +44,6 @@ public class HomeController {
 		boolean kyc = (boolean) jsonData.get("kyc");
 		String telecomProvider = (String) jsonData.get("telecomProvider");
 		String fullName = (String) jsonData.get("fullName");
-		Sim sim = new Sim(simCardNo, mobileNo, status, date, state,kyc , telecomProvider, fullName);
-		simRepository.save(sim);
+		Sim sim = new Sim(mobileNo, status, date, state,kyc , telecomProvider, fullName);
 	}
 }
