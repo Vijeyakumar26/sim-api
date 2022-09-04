@@ -1,5 +1,8 @@
 package com.sim.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sim.entity.Sim;
-import com.sim.exception.SimNotFoundException;
 import com.sim.repository.SimRepository;
 
 @Service
@@ -36,6 +38,20 @@ public class SimService {
 
 	public void deleteSim(Long simNo) {	
 		simRepository.deleteById(simNo);		
+	}
+
+	public List<Sim> toRenew() {
+		List<Sim> simListExpiring = new ArrayList<>();
+		List<Sim> sims = simRepository.findAll();
+		for(Sim sim : sims) {
+			LocalDate expiryDate = sim.getDate();
+			LocalDate todaysDate = LocalDate.now();
+			long days = ChronoUnit.DAYS.between(todaysDate,expiryDate);
+			if(days>30) {
+				simListExpiring.add(sim);
+			}
+		}
+		return simListExpiring;
 	}
 }
 

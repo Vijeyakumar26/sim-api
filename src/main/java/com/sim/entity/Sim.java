@@ -1,5 +1,7 @@
 package com.sim.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "simtable")
@@ -15,12 +16,12 @@ public class Sim {
 	
 	public Sim() {}
 	
-	public Sim(Long mobileNo, String status, String date, String state, boolean kyc,
+	public Sim(Long mobileNo, String status, LocalDate expiryDate, String state, boolean kyc,
 			String telecomProvider, String fullName) {
 		super();
 		this.mobileNo = mobileNo;
 		this.status = status;
-		this.date = date;
+		this.expiryDate = expiryDate;
 		this.state = state;
 		this.kyc = kyc;
 		this.telecomProvider = telecomProvider;
@@ -38,8 +39,8 @@ public class Sim {
 	@Column(name = "status")
 	private String status ;
 	
-	@Column(name = "date")
-	private String date;
+	@Column(name = "expiry_date")
+	private LocalDate expiryDate;
 	
 	@Column(name = "state", nullable = false)
 	private String state;
@@ -71,11 +72,11 @@ public class Sim {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getDate() {
-		return date;
+	public LocalDate getDate() {
+		return expiryDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(LocalDate date) {
+		this.expiryDate = date;
 	}
 	public String getState() {
 		return state;
@@ -103,10 +104,8 @@ public class Sim {
 	}
 	@Override
 	public String toString() {
-		return "Sim [simCardNo=" + simCardNo + ", mobileNo=" + mobileNo + ", status=" + status + ", date=" + date
+		return "Sim [simCardNo=" + simCardNo + ", mobileNo=" + mobileNo + ", status=" + status + ", expiryDate=" + expiryDate
 				+ ", state=" + state + ", kyc=" + kyc + ", telecomProvider=" + telecomProvider + ", fullName="
 				+ fullName + "]";
 	}
-	
-	
 }

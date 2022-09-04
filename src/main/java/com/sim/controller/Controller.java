@@ -56,4 +56,10 @@ public class Controller {
 	public void deleteSim(@PathVariable Long simNo) throws SimNotFoundException {
 		simService.deleteSim(simNo);
 	}
+	
+	@GetMapping(path = "/to-renew")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Sim> toRenew() {
+		return simService.toRenew();
+	}
 }
