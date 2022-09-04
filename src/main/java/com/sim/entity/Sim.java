@@ -13,6 +13,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "simtable")
 public class Sim {
 	
+	public Sim() {}
+	
 	public Sim(Long mobileNo, String status, String date, String state, boolean kyc,
 			String telecomProvider, String fullName) {
 		super();
