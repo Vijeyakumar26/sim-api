@@ -20,12 +20,11 @@ public class SimService {
 	
 	
 	public void addSim(Sim sim) {		
-		simRepository.save(new Sim(null, null, null, null, false, null, null));
+		simRepository.save(sim);
 	}
 
-	public boolean updateSimInfo(Sim sim) {
-		simRepository.save(null);
-		return false;
+	public void updateSimInfo(Sim sim) {
+		simRepository.save(sim);
 	}
 
 	public void deleteSim(String placeName) {
