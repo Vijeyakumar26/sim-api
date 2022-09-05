@@ -47,7 +47,7 @@ public class SimService {
 			LocalDate expiryDate = sim.getDate();
 			LocalDate todaysDate = LocalDate.now();
 			long days = ChronoUnit.DAYS.between(todaysDate,expiryDate);
-			if(days>30) {
+			if(days<=30) {
 				simListExpiring.add(sim);
 			}
 		}
