@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +33,9 @@ public class Controller {
 	}
 	
 	@GetMapping(path = "/listall")
-	@ResponseStatus(code = HttpStatus.OK)
-	public List<Sim> listAll() {	
-		 return simService.getAllSim();
+	//@ResponseStatus(code = HttpStatus.OK)
+	public ResponseEntity<List<Sim>> listAll() {	
+		 return ResponseEntity.ok(simService.getAllSim());
 	}
 	
 	@PostMapping(path = "/addsim")
