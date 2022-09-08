@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sim.entity.Sim;
+import com.sim.exception.SimNotFoundException;
 import com.sim.repository.SimRepository;
 
 @Service
 public class SimService {
 	
 	@Autowired
-	 private SimRepository simRepository;
-	
+	private SimRepository simRepository;
+
 	public List<Sim> getAllSim() {
 		return simRepository.findAll();
 	}
@@ -52,6 +54,22 @@ public class SimService {
 			}
 		}
 		return simListExpiring;
+	}
+
+	public Sim addTelepack(Long simNo) {
+		Sim updatedSim = null;
+		Optional<Sim> simOptional = simRepository.findById(simNo);
+		if(simOptional.isPresent()) {
+			Sim sim = simOptional.get();
+			LocalDate expiryDate = sim.getDate();
+			expiryDate = expiryDate.plusDays(30);
+			sim.setDate(expiryDate);
+			updatedSim = simRepository.save(sim);
+		}
+		else {
+			throw new SimNotFoundException("Sim not found with simNo: "+simNo);
+		}
+		return updatedSim;
 	}
 }
 

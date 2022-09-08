@@ -63,4 +63,10 @@ public class Controller {
 	public List<Sim> toRenew() {
 		return simService.toRenew();
 	}
+	
+	@PutMapping(path = "/renew/{simNo}")
+	@ResponseStatus(code = HttpStatus.OK)
+	public Sim renew(@PathVariable Long simNo) {
+		return simService.addTelepack(simNo);
+	}
 }
