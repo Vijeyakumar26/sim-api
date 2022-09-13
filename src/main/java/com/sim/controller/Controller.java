@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sim.entity.Sim;
 import com.sim.exception.SimNotFoundException;
-import com.sim.service.SimService;
+import com.sim.service.SimServiceImpl;
 
 @RequestMapping("/api/v1")
 @RestController
 public class Controller {
 	
 	@Autowired
-	 private SimService simService;
+	 private SimServiceImpl simService;
 
 	@GetMapping(path = "/")
 	@ResponseStatus(code = HttpStatus.OK)
@@ -64,7 +64,7 @@ public class Controller {
 		return simService.toRenew();
 	}
 	
-	@PutMapping(path = "/renew/{simNo}")
+	@GetMapping(path = "/renew/{simNo}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public Sim renew(@PathVariable Long simNo) {
 		return simService.addTelepack(simNo);
